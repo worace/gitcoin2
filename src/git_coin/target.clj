@@ -6,10 +6,6 @@
 (defn current-target []
   @target)
 
-
-;; Calculating next target
-;;
-
 (defn avg [things]
   (/ (reduce + things) (count things)))
 
@@ -26,7 +22,7 @@
   "Adjusts previous target based on time spread of recent blocks.
    last-blocks: seq of previous targets containing :created-at key
    previous-target: numeric previous target
-   desired-spacing: clj-time of desired block spacing"
+   desired-spacing: desired block spacing in seconds"
   [blocks previous-target desired-spacing]
   (let [spacing (avg-spacing (map :created-at blocks))
         ratio (/ spacing desired-spacing)]
